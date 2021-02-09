@@ -7,7 +7,7 @@ DISTFILES= dcled.c cpuload.c makefile README README-MACOS 40-dcled.rules
 # INSTALLDIR is where the binaries get installed
 INSTALLDIR=/usr/local/bin
 FONTDIR="/usr/local/share/dcled"
-DCLEDVERSION="2.2"
+DCLEDVERSION="2.4"
 DIST=dcled-$(DCLEDVERSION)
 LIBUSB_CFLAGS=-I/usr/include/libusb-1.0
 LIBUSB_LIBS=-lusb-1.0
@@ -41,7 +41,7 @@ ctags: $(HFILES) $(CFILES)
 
 # remove the object files
 clean:	
-	rm -i $(OFILES) dcled
+	rm -f $(OFILES) dcled cpuload
 
 # copy stuff into the install directory
 install:

@@ -12,6 +12,7 @@
  * Glen Smith
  * Robert Flick
  * Stefan Misch
+ * mauvedeity
  */
 
 #include <fcntl.h>
@@ -104,7 +105,8 @@ struct preamble preambles[] = {
 	{ "clock"   ,"Shows the time", "Andy Scheller" },
 	{ "spiral"  ,"Draws a spiral", "Glen Smith" },
 	{ "fire"    ,"A nice warm hearth", "Glen Smith" },
-	{ "bcdclock"   ,"Shows the time in binary", "Jeff Jahr" },
+	{ "bcdclock","Shows the time in binary", "Jeff Jahr" },
+	{ "flash"   ,"Flashes the whole screen", "mauvedeity" },
 	{ NULL,NULL,NULL }
 };
 
@@ -128,6 +130,7 @@ void scrollsquiggle(struct ledscreen *disp, int isend, int width);
 void printtime(struct ledscreen *disp,int mode);
 void spiral(struct ledscreen *disp);
 void fire(struct ledscreen *disp, int isend);
+void flashscreen(struct ledscreen *disp, int isend);
 struct ledfont *allocfont(void);
 struct ledfont *initfont1(struct ledfont *target);
 struct ledfont *initfont2(struct ledfont *target);
@@ -222,7 +225,7 @@ void send_screen (struct ledscreen *disp) {
 
 }
 
-/* clears the screen either by flasing it to zeros, or by scrolling it away.*/
+/* clears the screen either by flashing it to zeros, or by scrolling it away.*/
 void clearscreen(int mode,struct ledscreen *disp) {
 	int x,y;
 	switch (mode) {
@@ -602,6 +605,9 @@ void scrolltest(struct ledscreen *disp) {
 void scrollpreamble(int isend, struct ledscreen *disp) {
 
 	switch (disp->preamble) {
+		case 9:
+			flashscreen(disp,isend);
+			return;
 		case 7: 
 			fire(disp,isend);
 			return;
@@ -823,6 +829,29 @@ void fire(struct ledscreen *disp, int isend) {
 	clearscreen(0, disp);
 }
 
+void flashscreen(struct ledscreen *disp, int isend) {
+	int count = 0, oldbright, x, y;
+	oldbright = disp->brightness;
+	disp -> brightness = 2;
+	clearscreen(0, disp);
+	while(count < 5) {
+		/* set all on*/
+		for(x = 0; x < LEDSX; x++)
+			for(y = 0; y < LEDSY; y++)
+				disp->led[x][y] = 1;
+		send_screen(disp);
+		usleep(disp -> scrolldelay * 10);
+		/*set all off */
+		for(x = 0; x < LEDSX; x++)
+			for(y = 0; y < LEDSY; y++)
+				disp->led[x][y] = 0;
+		send_screen(disp);
+		usleep(disp -> scrolldelay * 10);
+		count++;
+	}
+	disp->brightness = oldbright;
+	clearscreen(0, disp);
+}
 
 /* Runs a bunch of test patterns.  */
 void fancytest(struct ledscreen *disp, struct ledfontlist *fontlist) {
@@ -970,6 +999,8 @@ void scrollmsg(struct ledscreen *disp, char* buf) {
 	while(*p){
 		scrollchar(disp,*p++);
 	}
+
+	clearscreen(1, disp);		/* for for not scrolling off the display properly? */
 
 	return;
 }
@@ -1623,7 +1654,8 @@ int main (int argc, char **argv) {
 	if(printhelp) {
 		/* bah getopt sucks.  Why do i have to format this?*/
 		/* maybe i just dont know the right way...*/
-		fprintf(stdout,"Usage- %s [opts] [files]\n\n",argv[0]);
+		fprintf(stdout,"This is dcled version %s\n\n", DCLEDVERSION);
+		fprintf(stdout,"Usage: %s [opts] [files]\n\n",argv[0]);
 		fprintf(stdout,"\t--brightness  -b   How bright, 0-2\n");
 		fprintf(stdout,"\t--clock       -c   Show the time\n");
 		fprintf(stdout,"\t--clock24h    -C   Show the 24h time\n");
