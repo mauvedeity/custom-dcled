@@ -1,6 +1,6 @@
 DcledFontVersion: 0
-Name: 7seg
-Description: Font with 7 segment clearer numbers
+Name: 7segXL
+Description: Font with Extra Large Numbers
 Author: @mauvedeity
 Size: 5 x 7
 00 .  aa 55 aa 55 aa 55 aa 
@@ -51,16 +51,16 @@ Size: 5 x 7
 2d -  00 00 00 0f 00 00 00 
 2e .  00 00 00 00 06 06 00 
 2f /  00 08 04 02 01 00 00 
-30 0  0e 0a 0a 0a 0a 0e 00 
-31 1  06 04 04 04 04 0e 00 
-32 2  0e 08 0e 02 02 0e 00 
-33 3  0e 08 0e 08 08 0e 00 
-34 4  0a 0a 0e 08 08 08 00 
-35 5  0e 02 0e 08 08 0e 00 
-36 6  0e 02 0e 0a 0a 0e 00 
-37 7  0e 08 08 08 08 08 00 
-38 8  0e 0a 0e 0a 0a 0e 00 
-39 9  0e 0a 0e 08 08 08 00 
+30 0  0e 0a 0a 0a 0a 0a 0e 
+31 1  06 04 04 04 04 04 0e 
+32 2  0e 08 08 0e 02 02 0e 
+33 3  0e 08 08 0e 08 08 0e 
+34 4  0a 0a 0a 0e 08 08 08 
+35 5  0e 02 02 0e 08 08 0e 
+36 6  0e 02 02 0e 0a 0a 0e 
+37 7  0e 08 08 08 08 08 08 
+38 8  0e 0a 0a 0e 0a 0a 0e 
+39 9  0e 0a 0a 0e 08 08 08 
 3a :  00 06 06 00 06 06 00 
 3b ;  00 06 06 00 06 02 01 
 3c <  00 08 04 02 04 08 00 
