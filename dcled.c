@@ -30,6 +30,7 @@
 #include <glob.h>
 #include <libusb.h>
 #include <math.h>
+#include <ctype.h>
 
 #define VENDOR 0x1d34
 #define PRODUCT 0x0013
