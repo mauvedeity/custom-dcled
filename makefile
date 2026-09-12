@@ -7,17 +7,20 @@ DISTFILES= dcled.c cpuload.c makefile README README-MACOS 40-dcled.rules
 # INSTALLDIR is where the binaries get installed
 INSTALLDIR=/usr/local/bin
 FONTDIR="/usr/local/share/dcled"
-DCLEDVERSION="2.4"
+DCLEDVERSION="2.5"
 DIST=dcled-$(DCLEDVERSION)
-LIBUSB_CFLAGS=-I/usr/include/libusb-1.0
-LIBUSB_LIBS=-lusb-1.0
+# LIBUSB_CFLAGS=-I/usr/include/libusb-1.0
+# LIBUSB_LIBS=-lusb-1.0
+
+LIBUSB_CFLAGS=-I/home/linuxbrew/.linuxbrew/Cellar/libusb/1.0.30/include/libusb-1.0/
+LIBUSB_LIBS=/home/linuxbrew/.linuxbrew/Cellar/libusb/1.0.30/lib/libusb-1.0.so
 
 # If gcc isnt your compiler, change it here.
  
 CC=gcc
 
 CFLAGS= -g -O3 -Wunused-variable -DFONTDIR='$(FONTDIR)' -DDCLEDVERSION='$(DCLEDVERSION)' ${LIBUSB_CFLAGS}
-LDFLAGS= -g -lm ${LIBUSB_LIBS}
+LDFLAGS= -g -lm ${LIBUSB_LIBS} 
  
 # You probaby dont need to change anything below this line...
  
