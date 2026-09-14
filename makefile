@@ -12,8 +12,8 @@ DIST=dcled-$(DCLEDVERSION)
 # LIBUSB_CFLAGS=-I/usr/include/libusb-1.0
 # LIBUSB_LIBS=-lusb-1.0
 
-LIBUSB_CFLAGS=-I/home/linuxbrew/.linuxbrew/Cellar/libusb/1.0.30/include/libusb-1.0/
-LIBUSB_LIBS=/home/linuxbrew/.linuxbrew/Cellar/libusb/1.0.30/lib/libusb-1.0.so
+LIBUSB_CFLAGS=-I/opt/homebrew/Cellar/libusb/1.0.30/include/libusb-1.0/
+LIBUSB_LIBS=/opt/homebrew/Cellar/libusb/1.0.30/lib/libusb-1.0.dylib
 
 # If gcc isnt your compiler, change it here.
  
